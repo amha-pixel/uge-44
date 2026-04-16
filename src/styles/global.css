@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  background-color: var(--farve-baggrund);
+  color: var(--farve-tekst);
+}
+
+/* Overskrifter - mobile first */
+h1 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+h3 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 65px;
+  }
+
+  h2 {
+    font-size: 65px;
+  }
+
+  h3 {
+    font-size: 48px;
+  }
+}
+
+h1, h2, h3, h4 {
+    text-transform: uppercase;
+}
+
+:root {
+  --farve-baggrund: #fef8f6;
+  --farve-footer: #f7cec1;
+  --farve-bobbel-lys: #fde6de;
+  --farve-bobbel-mork: #e8b4a4;
+  --farve-event-card: #f9dfd8;
+  --farve-orange: #df742d;
+  --farve-film-card: #e5ecf3;
+  --farve-bog-card: #f1f9f1;
+  --farve-tekst: #000000;
+}
