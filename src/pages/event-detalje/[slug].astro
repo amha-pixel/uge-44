@@ -7,12 +7,14 @@ export async function getStaticPaths() {
 
   const { data: events } = await supabase.from("events").select("*");
 
+
   return (events ?? []).map((event) => ({
-    params: { id: String(event.id) },
+    params: { slug: String(event.id) },
     props: { event },
   }));
 }
 
+const { slug } = Astro.params;  
 const { event } = Astro.props;
 ---
 
