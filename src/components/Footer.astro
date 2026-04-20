@@ -1,0 +1,182 @@
+---
+import logo from "../assets/Final_logo.svg?url";
+import facebook from "../assets/facebook.svg?url";
+import instagram from "../assets/instagram.svg?url";
+import linkedin from "../assets/linkedin.svg?url";
+import tiktok from "../assets/tiktok.svg?url";
+import youtube from "../assets/youtube.svg?url";
+import hus from "../assets/hus.svg?url";
+import telefon from "../assets/telefon.svg?url";
+import mail from "../assets/mail.svg?url";
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src={logo} alt="Uge 44" class="footer-logo-billede" />
+    </div>
+
+    <div class="footer-kolonne">
+      <h3>Landsforeningen Liv & Død</h3>
+      <ul class="kontakt-liste">
+        <li>
+          <img src={hus} alt="" class="kontakt-ikon" />
+          <span>Bispebjerg Torv 16 st. tv.<br />2400 København NV</span>
+        </li>
+        <li>
+          <img src={telefon} alt="" class="kontakt-ikon" />
+          <span>33 36 49 70</span>
+        </li>
+        <li>
+          <img src={mail} alt="" class="kontakt-ikon" />
+          <span>info@livogdoed.dk</span>
+        </li>
+      </ul>
+      <p class="cvr">CVR: 254441397</p>
+    </div>
+
+    <div class="footer-kolonne">
+      <h3>Udvalgte Genveje</h3>
+      <div class="genveje-grid">
+        <ul>
+          <li><a href="#">Om Os</a></li>
+          <li><a href="#">Liv&Død Prisen</a></li>
+          <li><a href="#">Bogoversigt</a></li>
+          <li><a href="#">Filmoversigt</a></li>
+          <li><a href="#">Podcast</a></li>
+          <li><a href="#">Materialer</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Vores Historie</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Kalender</a></li>
+          <li><a href="#">Nyheder</a></li>
+          <li><a href="#">Nyhedsbrev</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-kolonne">
+      <h3>Find os på sociale medier</h3>
+      <div class="sociale-ikoner">
+        <a href="#" aria-label="Facebook"><img src={facebook} alt="Facebook" class="social-ikon" /></a>
+        <a href="#" aria-label="Instagram"><img src={instagram} alt="Instagram" class="social-ikon" /></a>
+        <a href="#" aria-label="LinkedIn"><img src={linkedin} alt="LinkedIn" class="social-ikon" /></a>
+        <a href="#" aria-label="TikTok"><img src={tiktok} alt="TikTok" class="social-ikon" /></a>
+        <a href="#" aria-label="YouTube"><img src={youtube} alt="YouTube" class="social-ikon" /></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--farve-footer);
+    padding: 3rem 1.5rem 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .footer-logo-billede {
+    width: 140px;
+  }
+
+  .footer-kolonne h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .kontakt-liste {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .kontakt-liste li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+
+  .kontakt-ikon {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .cvr {
+    font-size: 0.9rem;
+    margin-top: 0.6rem;
+    padding-left: 1.8rem;
+  }
+
+  .genveje-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1rem;
+  }
+
+  .genveje-grid ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .genveje-grid a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 0.9rem;
+  }
+
+  .genveje-grid a:hover {
+    color: #df742d;
+  }
+
+  .sociale-ikoner {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .social-ikon {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  /* Mobil */
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .genveje-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-kolonne:nth-child(4) {
+      order: -1;
+    }
+
+    .footer-logo {
+      order: 1;
+    }
+  }
+</style>
