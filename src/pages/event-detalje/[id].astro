@@ -1,0 +1,132 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { createClient } from "@supabase/supabase-js";
+
+export async function getStaticPaths() {
+  const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_URL, import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
+
+  const { data: events } = await supabase.from("events").select("*");
+
+  return (events ?? []).map((event) => ({
+    params: { id: String(event.id) },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+---
+
+<Layout>
+  <main>
+    <article class="event-detalje">
+      <div class="billede-wrapper">
+        <img src={event.billede_url} alt={event.titel} class="hero-billede" />
+        <div class="dato-badge">
+          <span class="maaned">{event.maaned}</span>
+          <span class="dag">{event.dag}</span>
+        </div>
+      </div>
+      <div class="indhold">
+        <h1>{event.titel}</h1>
+        <p class="beskrivelse">{event.beskrivelse}</p>
+        <ul class="meta">
+          <li><strong>By:</strong> {event.by}</li>
+          <li><strong>Sted:</strong> {event.sted}</li>
+          <li><strong>Dato:</strong> {event.dag}. {event.maaned}</li>
+          <li><strong>Tidspunkt:</strong> {event.tidspunkt}</li>
+        </ul>
+        <a href="/events" class="tilbage">Tilbage til events</a>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .event-detalje {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .event-detalje {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .billede-wrapper {
+    position: relative;
+  }
+
+  .hero-billede {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1.5px solid black;
+    object-fit: cover;
+  }
+
+  .dato-badge {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #df742d;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    text-align: center;
+  }
+
+  .maaned {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .dag {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .beskrivelse {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .meta {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .tilbage {
+    display: inline-block;
+    background-color: var(--farve-tekst);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+  }
+</style>
