@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import EventCardGrid from "../components/EventCardGrid.astro";
 import { createClient } from "@supabase/supabase-js";
+import Hero from "../components/Hero.astro";
 
 const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_URL, import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
 
@@ -17,9 +18,8 @@ const resten = blandede.slice(6);
 
 <Layout>
   <main>
+    <Hero />
     <section class="events-sektion">
-      <h1>Eventkalender 2026</h1>
-      <p class="intro">I uge 44 bliver der afholdt events i hele landet.</p>
       <h2>Events</h2>
       <div class="events-grid" id="events-grid">
         {viste.map((event) => <EventCardGrid id={event.id} titel={event.titel} beskrivelse={event.beskrivelse} dag={event.dag} maaned={event.maaned} billede={event.billede_url} />)}

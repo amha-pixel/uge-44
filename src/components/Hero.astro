@@ -1,0 +1,54 @@
+---
+import kalender from "../assets/kalendericon.svg?url";
+---
+
+<section class="hero">
+  <div class="hero-tekst">
+    <h1>Eventkalender 2026</h1>
+    <p class="intro">
+      I uge 44 bliver der afholdt events i hele landet. I oversigten kan du danne dig et overblik over events i nærheden af dig eller finde ud af, hvor du skal transportere dig hen. Her på siden kan du læse mere om de forskellige arrangementer og
+      orientere dig i hvor og hvornår de finder sted.
+    </p>
+  </div>
+  <div class="kalender-ikon">
+    <img src={kalender} alt="Kalender" />
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 3rem 1.5rem 1rem;
+    gap: 2rem;
+  }
+
+  .kalender-ikon img {
+    width: 120px;
+  }
+
+  h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+    }
+
+    .kalender-ikon img {
+      width: 80px;
+    }
+  }
+</style>
