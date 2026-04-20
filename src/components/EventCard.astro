@@ -1,59 +1,103 @@
 ---
-const { titel, dag, maaned, sted } = Astro.props;
+const { titel, beskrivelse, dag, maaned, billede, id } = Astro.props;
 ---
 
-<div class="event-card">
-    <div class="card-tekst">
-        <h3>{titel}</h3>
-        <p>{sted}</p>
-        <a href="/event-detalje">Se mere</a>
-    </div>
+<a href={`/event-detalje/${id}`} class="event-card">
+  <div class="card-tekst">
+    <h3>{titel}</h3>
+    <p>{beskrivelse}</p>
+    <span class="laes-mere">Læs mere..</span>
+  </div>
+  <div class="card-billede-wrapper">
+    <img src={billede} alt={titel} class="card-billede" />
     <div class="dato-badge">
-        <span class="maaned">{maaned}</span>
-        <span class="dag">{dag}</span>
+      <span class="maaned">{maaned}</span>
+      <span class="dag">{dag}</span>
     </div>
-</div>
+  </div>
+</a>
 
 <style>
   .event-card {
     background-color: var(--farve-event-card);
     border-radius: 1rem;
+    border: 1.5px solid black;
     min-width: 200px;
+    max-width: 260px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--farve-tekst);
+    flex-shrink: 0;
+  }
+
+  .card-tekst {
     padding: 1rem;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
   }
 
   h3 {
     font-family: "Montserrat", sans-serif;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.8rem;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--farve-tekst);
+  }
+
+  .laes-mere {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--farve-tekst);
+  }
+
+  .card-billede-wrapper {
+    position: relative;
+  }
+
+  .card-billede {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
   }
 
   .dato-badge {
-    background-color: var(--farve-orange);
+    position: absolute;
+    bottom: 0.6rem;
+    left: 0.6rem;
+    background-color: #DF742D;
     color: white;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.4rem;
     text-align: center;
-    margin-top: 1rem;
-    display: inline-block;
   }
 
   .maaned {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .dag {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
-  }
-
-  a {
-    color: var(--farve-tekst);
-    font-size: 0.9rem;
+    line-height: 1.1;
   }
 </style>
