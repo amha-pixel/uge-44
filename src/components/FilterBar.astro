@@ -1,0 +1,88 @@
+---
+const { landsdele, byer, datoer } = Astro.props;
+---
+
+<section class="filtrering">
+  <div class="filter-gruppe">
+    <select id="filter-landsdel" class="filter-dropdown">
+      <option value="">Sted ↓</option>
+      {landsdele.map((l: string) => <option value={l}>{l}</option>)}
+    </select>
+
+    <select id="filter-by" class="filter-dropdown">
+      <option value="">By ↓</option>
+      {byer.map((b: string) => <option value={b}>{b}</option>)}
+    </select>
+
+    <select id="filter-dato" class="filter-dropdown">
+      <option value="">Dato ↓</option>
+      {datoer.map((d: string) => <option value={d}>{d}</option>)}
+    </select>
+
+    <button id="vis-events-btn" class="vis-events-knap">Vis events →</button>
+  </div>
+</section>
+
+<script>
+  const knap = document.getElementById("vis-events-btn");
+  knap?.addEventListener("click", () => {
+    const landsdel = (document.getElementById("filter-landsdel") as HTMLSelectElement).value;
+    const by = (document.getElementById("filter-by") as HTMLSelectElement).value;
+    const dato = (document.getElementById("filter-dato") as HTMLSelectElement).value;
+
+    const params = new URLSearchParams();
+    if (landsdel) params.set("landsdel", landsdel);
+    if (by) params.set("by", by);
+    if (dato) params.set("dato", dato);
+
+    window.location.href = `/events?${params.toString()}`;
+  });
+</script>
+
+<style>
+  .filtrering {
+    padding: 0 1.5rem 1rem;
+    border-bottom: 1px solid black;
+  }
+
+  .filter-gruppe {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+.filter-dropdown {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border: none;
+    border-radius: 2rem;
+    background-color: #000000;
+    color: #F9DFD8;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23F9DFD8' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+  }
+
+  .vis-events-knap {
+    background-color: #000000;
+    color: #F9DFD8;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .vis-events-knap:hover {
+    opacity: 0.85;
+  }
+</style>

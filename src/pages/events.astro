@@ -1,8 +1,11 @@
 ---
+export const prerender = false;
+
 import Layout from "../layouts/Layout.astro";
 import EventCardGrid from "../components/EventCardGrid.astro";
 import { createClient } from "@supabase/supabase-js";
 import Hero from "../components/Hero.astro";
+import FilterBar from "../components/FilterBar.astro";
 
 const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_URL, import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
 
@@ -11,14 +14,33 @@ const { data: alleEvents, error } = await supabase.from("events").select("*").or
 console.log("Events:", alleEvents);
 console.log("Fejl:", error);
 
-const blandede = (alleEvents ?? []).sort(() => Math.random() - 0.5);
-const viste = blandede.slice(0, 6);
-const resten = blandede.slice(6);
+const landsdele = [...new Set((alleEvents ?? []).map((e) => e.landsdel).filter(Boolean))];
+const byer = [...new Set((alleEvents ?? []).map((e) => e.by).filter(Boolean))];
+const datoer = [...new Set((alleEvents ?? []).map((e) => e.dato).filter(Boolean))];
+
+// Læs URL-parametre
+const url = new URL(Astro.request.url);
+const valgtLandsdel = url.searchParams.get("landsdel") ?? "";
+const valgtBy = url.searchParams.get("by") ?? "";
+const valgtDato = url.searchParams.get("dato") ?? "";
+
+// Filtrer events baseret på valgte parametre
+const filtrerede = (alleEvents ?? []).filter((e) => {
+  return (
+    (!valgtLandsdel || e.landsdel === valgtLandsdel) &&
+    (!valgtBy || e.by === valgtBy) &&
+    (!valgtDato || e.dato === valgtDato)
+  );
+});
+
+const viste = filtrerede.slice(0, 6);
+const resten = filtrerede.slice(6);
 ---
 
 <Layout>
   <main>
     <Hero />
+    <FilterBar landsdele={landsdele} byer={byer} datoer={datoer} />
     <section class="events-sektion">
       <h2>Events</h2>
       <div class="events-grid" id="events-grid">
