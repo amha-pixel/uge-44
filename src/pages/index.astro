@@ -4,6 +4,11 @@ import EventCard from "../components/EventCard.astro";
 import bobbel1 from "../assets/cut-out-talebobbel-1.svg";
 import bobbel2 from "../assets/cut-out-talebobbel-2.svg";
 import grafik from "../assets/uge44-grafik.svg";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_URL, import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
+
+const { data: events } = await supabase.from("events").select("*").order("dato", { ascending: true }).limit(4);
 ---
 
 <Layout>
@@ -32,10 +37,7 @@ import grafik from "../assets/uge44-grafik.svg";
     <section class="events-sektion">
       <h2>Events rundt om i landet</h2>
       <div class="events-grid">
-        <EventCard titel="Sange til de døde" dag="29" maaned="OKT" sted="Roskilde" />
-        <EventCard titel="Death Café" dag="28" maaned="OKT" sted="Randers" />
-        <EventCard titel="Filmvisning" dag="30" maaned="OKT" sted="Ringe Bio" />
-        <EventCard titel="Sorgfestival" dag="30" maaned="OKT" sted="Odense" />
+        {(events ?? []).map((event) => <EventCard id={event.id} titel={event.titel} beskrivelse={event.beskrivelse} dag={event.dag} maaned={event.maaned} billede={event.billede_url} />)}
       </div>
     </section>
   </main>
