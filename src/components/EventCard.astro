@@ -1,9 +1,59 @@
 ---
-const { titel, dato, sted } = Astro.props;
+const { titel, dag, maaned, sted } = Astro.props;
 ---
 
 <div class="event-card">
-  <h2>{titel}</h2>
-  <p>{dato}</p>
-  <p>{sted}</p>
+    <div class="card-tekst">
+        <h3>{titel}</h3>
+        <p>{sted}</p>
+        <a href="/event-detalje">Se mere</a>
+    </div>
+    <div class="dato-badge">
+        <span class="maaned">{maaned}</span>
+        <span class="dag">{dag}</span>
+    </div>
 </div>
+
+<style>
+  .event-card {
+    background-color: var(--farve-event-card);
+    border-radius: 1rem;
+    min-width: 200px;
+    padding: 1rem;
+    position: relative;
+  }
+
+  h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .dato-badge {
+    background-color: var(--farve-orange);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-top: 1rem;
+    display: inline-block;
+  }
+
+  .maaned {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .dag {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  a {
+    color: var(--farve-tekst);
+    font-size: 0.9rem;
+  }
+</style>

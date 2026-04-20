@@ -1,14 +1,97 @@
 ---
-import Navigation from "../components/Navigation.astro";
-import EventCard from "../components/EventCard.astro";
 import Layout from "../layouts/Layout.astro";
+import EventCard from "../components/EventCard.astro";
+import bobbel1 from "../assets/cut-out-talebobbel-1.svg";
+import bobbel2 from "../assets/cut-out-talebobbel-2.svg";
+import grafik from "../assets/uge44-grafik.svg";
 ---
 
 <Layout>
-  <Navigation />
-  <h1>Hej verden</h1>
+  <main>
+    <section class="hero">
+      <h1>Fokus på døden</h1>
+      <p>Hvert år sætter Landsforeningen Liv&Død landsdækkende fokus på døden i uge 44 gennem indsatser, der går på tværs af kultur, sundhed og læring.</p>
+      <a href="#" class="knap">Bliv del af Uge 44</a>
+    </section>
+    <section class="statistik">
+      <div class="bobbel">
+        <img src={bobbel2.src} alt="Statistik bobbel" />
+        <p><strong>Vidste du godt...</strong><br />12% ved ikke, om det er vigtigt at tale om døden med sine nærmeste.</p>
+      </div>
+      <div class="bobbel">
+        <img src={bobbel1.src} alt="Statistik bobbel" />
+        <p><strong>Vidste du godt...</strong><br />Kun 10% mener ikke, det er vigtigt at tale om døden med familie og venner.</p>
+      </div>
+      <div class="bobbel">
+        <img src={bobbel2.src} alt="Statistik bobbel" />
+        <p><strong>Vidste du godt...</strong><br />78% af danskere synes, det er vigtigt at tale om døden med familie og venner.</p>
+      </div>
+      <img src={grafik.src} alt="Uge 44 grafik" />
+    </section>
 
-  <EventCard titel="Death Café" dato="28. oktober" sted="Café SNAK, Randers" />
-
-  <EventCard titel="Sange til de døde" dato="29. oktober" sted="Roskilde" />
+    <section class="events-sektion">
+      <h2>Events rundt om i landet</h2>
+      <div class="events-grid">
+        <EventCard titel="Sange til de døde" dag="29" maaned="OKT" sted="Roskilde" />
+        <EventCard titel="Death Café" dag="28" maaned="OKT" sted="Randers" />
+        <EventCard titel="Filmvisning" dag="30" maaned="OKT" sted="Ringe Bio" />
+        <EventCard titel="Sorgfestival" dag="30" maaned="OKT" sted="Odense" />
+      </div>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  .hero {
+    padding: 2rem 1.5rem;
+    background-color: var(--farve-baggrund);
+  }
+
+  .knap {
+    display: inline-block;
+    background-color: var(--farve-orange);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    margin-top: 1rem;
+  }
+  .statistik {
+    padding: 2rem 1.5rem;
+  }
+
+  .bobbel {
+    position: relative;
+    display: inline-block;
+  }
+
+  .bobbel img {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+  }
+
+  .bobbel p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .events-sektion {
+    padding: 2rem 1.5rem;
+    background-color: var(--farve-events-baggrund);
+  }
+
+  .events-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+</style>
