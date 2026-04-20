@@ -1,7 +1,69 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import EventCardGrid from "../components/EventCardGrid.astro";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_URL, import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
+
+const { data: alleEvents, error } = await supabase.from("events").select("*").order("dato", { ascending: true });
+
+console.log("Events:", alleEvents);
+console.log("Fejl:", error);
+
+const blandede = (alleEvents ?? []).sort(() => Math.random() - 0.5);
+const viste = blandede.slice(0, 6);
+const resten = blandede.slice(6);
 ---
 
 <Layout>
-    <h1>Eventkalender 2026</h1>
+  <main>
+    <section class="events-sektion">
+      <h1>Eventkalender 2026</h1>
+      <p class="intro">I uge 44 bliver der afholdt events i hele landet.</p>
+      <h2>Events</h2>
+      <div class="events-grid" id="events-grid">
+        {viste.map((event) => <EventCardGrid id={event.id} titel={event.titel} beskrivelse={event.beskrivelse} dag={event.dag} maaned={event.maaned} billede={event.billede_url} />)}
+      </div>
+      <button class="indlaes-flere" id="indlaes-btn">Indlæs flere ...</button>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  .events-sektion {
+    padding: 2rem 1.5rem;
+  }
+  h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 2rem 0 1rem;
+  }
+  .events-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .events-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .indlaes-flere {
+    display: block;
+    margin: 2rem auto 0;
+    background: none;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+</style>
