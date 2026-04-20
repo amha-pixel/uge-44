@@ -1,0 +1,112 @@
+---
+const { titel, beskrivelse, dag, maaned, billede, id } = Astro.props;
+---
+
+<a href={`/event-detalje/${id}`} class="event-card">
+  <div class="card-billede-wrapper">
+    <img src={billede} alt={titel} class="card-billede" />
+    <div class="dato-badge">
+      <span class="maaned">{maaned}</span>
+      <span class="dag">{dag}</span>
+    </div>
+    <div class="uge-badge">UGE 44</div>
+  </div>
+  <div class="card-tekst">
+    <h3>{titel}</h3>
+    <p>{beskrivelse}</p>
+    <span class="laes-mere">Læs mere..</span>
+  </div>
+</a>
+
+<style>
+  .event-card {
+    background-color: var(--farve-event-card);
+    border-radius: 1rem;
+    border: 1.5px solid black;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--farve-tekst);
+  }
+
+  .card-billede-wrapper {
+    position: relative;
+  }
+
+  .card-billede {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .dato-badge {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 0.6rem;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.4rem;
+    text-align: center;
+  }
+
+  .maaned {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .dag {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .uge-badge {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    background-color: var(--farve-event-card);
+    color: var(--farve-tekst);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+  }
+
+  .card-tekst {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.8rem;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--farve-tekst);
+  }
+
+  .laes-mere {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--farve-tekst);
+  }
+</style>
