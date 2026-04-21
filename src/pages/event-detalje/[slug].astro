@@ -2,20 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import { createClient } from "@supabase/supabase-js";
 
-export async function getStaticPaths() {
-  const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_URL, import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
-
-  const { data: events } = await supabase.from("events").select("*");
-
-
-  return (events ?? []).map((event) => ({
-    params: { slug: String(event.id) },
-    props: { event },
-  }));
-}
-
-const { slug } = Astro.params;  
-const { event } = Astro.props;
+const { slug } = Astro.params;
+const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_URL, import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
+const { data: event } = await supabase.from("events").select("*").eq("id", slug).single();
 ---
 
 <Layout>

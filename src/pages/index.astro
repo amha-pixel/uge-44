@@ -31,7 +31,7 @@ const { data: events } = await supabase.from("events").select("*").order("dato",
         <img src={bobbel2.src} alt="Statistik bobbel" />
         <p><strong>Vidste du godt...</strong><br />78% af danskere synes, det er vigtigt at tale om døden med familie og venner.</p>
       </div>
-      <img src={grafik.src} alt="Uge 44 grafik" />
+      <img src={grafik.src} alt="Uge 44 grafik" class="grafik" />
     </section>
 
     <section class="events-sektion">
@@ -96,4 +96,11 @@ const { data: events } = await supabase.from("events").select("*").order("dato",
     gap: 1rem;
     padding-bottom: 1rem;
   }
+
+  .grafik {
+  max-width: 300px;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
 </style>
