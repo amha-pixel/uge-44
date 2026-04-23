@@ -1,7 +1,286 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import logoPresse from "../assets/Logo-presse.svg";
+import plakatBillede from "../assets/LivDoed-plakat-Final-600x850.jpg";
+import simonFoto from "../assets/Simon-Vaeth-introduktion-600x667.png";
 ---
 
 <Layout>
-    <h1>Om Uge 44</h1>
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-tekst">
+        <h1>Vil I være med til at sætte fokus på døden i Uge 44</h1>
+        <p>Hvis I allerede nu ved, at I har et event i kalenderen, og gerne vil være en del af kampagnesygen, så vil vi med glæde inkludere jer i programmet for ugen.</p>
+        <p>Det eneste, I skal gøre, er at indsætte logoet for UGE 44 på jeres arrangements hjemmeside, og dermed tilkendegive, at I er en del af kampagneugen UGE 44 – Fokus på døden. Når I har gjort det, så skriv til os på mail, så får vi jer på listen!</p>
+        <a href="mailto:info@livogdoed.dk" class="knap-outline">INFO@LIVOGDOED.DK</a>
+      </div>
+      <div class="hero-billede">
+        <img src={logoPresse.src} alt="Logo og presse" />
+      </div>
+    </section>
+
+    <!-- TO KOLONNER -->
+    <section class="to-kolonner">
+      <div>
+        <h2>Mangler I en god ide til et event?</h2>
+        <p>Hvis I gerne vil være med i kampagnen, men endnu ikke har en idé til hvordan, så skriv til os på mail info@livogdoed.dk. Vi hjælper med ideer til mulige arrangementer. I kan også finde vores bog- og filmliste herunder.</p>
+      </div>
+      <div>
+        <h2>Download materiale til Uge 44</h2>
+        <p>Vi har lavet forskellige logoer til download, så det kan tilpasses til jeres behov. For at blive en del af kampagnen skal I indsætte et af logoerne på siden for jeres arrangement.</p>
+        <p>I finder også plakater, infografikker o.a. materiale. Hvis I har besvær med formater eller størrelser, kontakt da info@livogdoed.dk.</p>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD KNAPPER -->
+    <section class="download-sektion">
+      <a href="#" class="dl-btn">Tidligere events</a>
+      <a href="#" class="dl-btn">Podcast</a>
+      <a href="#" class="dl-btn">Bogliste</a>
+      <a href="#" class="dl-btn">Filmliste</a>
+      <a href="#" class="dl-btn">Logoer</a>
+      <a href="#" class="dl-btn">Infografikker</a>
+      <a href="#" class="dl-btn">Plakater</a>
+    </section>
+
+    <!-- PLAKAT -->
+    <section class="plakat-sektion">
+      <h2>Årets plakat for 2026 bliver snart offentliggjort!</h2>
+      <div class="plakat-grid">
+        <figure>
+          <img src={plakatBillede.src} alt="Årets plakat for Uge 44" />
+          <figcaption>Årets plakat for 2026</figcaption>
+        </figure>
+        <div class="plakat-tekst">
+          <h3>I 2025 blev plakaten for UGE 44 skabt af illustrator, animator og billedkunstner Simon Væth.</h3>
+          <div class="bobbel">
+            <p class="bobbel-label">Om at lave plakaten forklarer Simon:</p>
+            <p class="bobbel-citat">Jeg takkede ja til at arbejde med plakat-designet, da jeg finder opgaven både spændende og udfordrende. Det er jo et følelsomt emne, og for mig at se bliver kunsten at ramme noget som hverken er for "indpakket" og distanceret til temaet, og på den anden side heller ikke for direkte og hårdt. Døden skal kort sagt hverken blive for visuelt utydelig eller modsat for tydelig!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OM SIMON -->
+    <section class="om-simon">
+      <div class="simon-tekst">
+        <h2>Om Simon</h2>
+        <p>I sit virke som illustrator arbejder Simon med et grafisk billedsprog hvor han tolker og fordrejer tekster og temaer til poetiske illustrationer.</p>
+        <p>I hans alsidige arbejde finder man ofte små ledetråde til hans personlige engagement i de historiske og mytologiske temaer som i forening med de grove analoge teknikker og de klare digitale farver, skaber et udtryk som både peger frem og tilbage i tid. Med papirklippet og de grafiske tryktekniker, eksperimenterer han med det flade, naivistiske og umiddelbare formsprog.</p>
+        <p>Simon har illustreret flere børne- og billedbøger samt tegnet for en lang række aviser, blade og forlag.</p>
+      </div>
+      <figure class="simon-foto">
+        <img src={simonFoto.src} alt="Simon Væth" />
+        <figcaption>Foto: Peter Helles Eriksen</figcaption>
+      </figure>
+    </section>
+
+  </main>
 </Layout>
+
+<style>
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+    background-color: var(--farve-baggrund);
+  }
+
+  .hero-tekst h1 {
+    margin-bottom: 1rem;
+  }
+
+  .hero-tekst p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .hero-billede img {
+    width: 100%;
+    max-width: 280px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .knap-outline {
+    display: inline-block;
+    border: 2px solid var(--farve-tekst);
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--farve-tekst);
+    margin-top: 0.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .knap-outline:hover {
+    background-color: var(--farve-tekst);
+    color: var(--farve-baggrund);
+  }
+
+  /* TO KOLONNER */
+  .to-kolonner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .to-kolonner h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .to-kolonner p {
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  /* DOWNLOAD */
+  .download-sektion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0 1.5rem 2rem;
+  }
+
+  .dl-btn {
+    background-color: var(--farve-orange);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .dl-btn:hover {
+    opacity: 0.85;
+  }
+
+  /* PLAKAT */
+  .plakat-sektion {
+    padding: 2rem 1.5rem;
+  }
+
+  .plakat-sektion > h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .plakat-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .plakat-grid figure img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .plakat-grid figcaption {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #666;
+  }
+
+  .plakat-tekst h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .bobbel {
+    background-color: var(--farve-bobbel-lys);
+    border-radius: 1.2rem 1.2rem 1.2rem 0;
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .bobbel-label {
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .bobbel-citat {
+    font-style: italic;
+    line-height: 1.7;
+    font-size: 0.9rem;
+  }
+
+  /* OM SIMON */
+  .om-simon {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .simon-tekst h2 {
+    margin-bottom: 1rem;
+  }
+
+  .simon-tekst p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .simon-foto img {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .simon-foto figcaption {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #666;
+  }
+
+  /* DESKTOP */
+  @media (min-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr 1fr;
+      padding: 4rem 3rem;
+      align-items: center;
+    }
+
+    .hero-billede img {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .to-kolonner {
+      grid-template-columns: 1fr 1fr;
+      padding: 4rem 3rem;
+    }
+
+    .download-sektion {
+      padding: 0 3rem 3rem;
+    }
+
+    .plakat-sektion {
+      padding: 4rem 3rem;
+    }
+
+    .plakat-grid {
+      grid-template-columns: 280px 1fr;
+      align-items: start;
+    }
+
+    .om-simon {
+      grid-template-columns: 1fr 340px;
+      padding: 4rem 3rem;
+      align-items: start;
+    }
+  }
+</style>
